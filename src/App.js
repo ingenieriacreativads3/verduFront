@@ -11,6 +11,7 @@ import MyLoginPage from './Entities/LoginPage'
 import { createMuiTheme } from '@material-ui/core/styles';
 
 import { BankList, BankCreate, BankEdit } from './Entities/Bank'
+import { SaleList, SaleCreate, SaleEdit } from './Entities/Sale'
 import { UserList, UserCreate, UserEdit } from './Entities/User'
 import { SessionList, SessionCreate, SessionEdit } from './Entities/Session'
 
@@ -43,9 +44,10 @@ const App = () => {
     catchAll={ NotFound }
     // theme={ theme }
   >
-    <Resource name="bank" list={ BankList } edit={ BankEdit } create={ BankCreate } />
-    <Resource name="user" list={ UserList } edit={ UserEdit } create={ UserCreate } />
-    <Resource name="session" list={ SessionList } />
+    {/* <Resource name="bank" list={ BankList } edit={ BankEdit } create={ BankCreate } /> */}
+    <Resource name="sale" list={ SaleList } create={ SaleCreate } />
+    {/* <Resource name="user" list={ UserList } edit={ UserEdit } create={ UserCreate } /> */}
+    {/* <Resource name="session" list={ SessionList } /> */}
   </Admin>
 };
 
