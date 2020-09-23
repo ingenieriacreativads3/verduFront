@@ -24,15 +24,9 @@ import {
   ReferenceField,
   EditButton,
   TabbedShowLayout,
-  Tab,
-  NumberField,
-  NumberInput,
-  useNotify,
-  useRefresh,
-  useRedirect,
+  Tab
 } from 'react-admin';
 import IconEvent from '@material-ui/icons/Event';
-import { Typography } from '@material-ui/core';
 
 const httpClient = (url, options = {}) => {
   // if (!options.headers) {
@@ -97,85 +91,58 @@ const ListActions = (props) => {
   );
 };
 
-const SaleFilter = (props) => (
+const ProviderFilter = (props) => (
   <Filter {...props}>
     {/* <TextInput label="Search" source="q" alwaysOn /> */}
-    <ReferenceInput label="Sale" source="name" reference="sale" allowEmpty>
+    <ReferenceInput label="Provider" source="name" reference="provider" allowEmpty>
       <SelectInput optionText="name" />
     </ReferenceInput>
   </Filter>
 );
 
-export const SaleList = (props) => {
+export const ProviderList = (props, schema) => {
 
-  const resource ='/sale'
+  const resource ='/provider'
   const apiUrl = 'http://localhost:303';
   const url = apiUrl + resource + '/schema'
 
 
-  return <div>
-      <List 
-      {...props}
-      title=""
-      actions={<ListActions />}
-      // filters={<SaleFilter />}
-    >
-      <Datagrid>
-        {/* <EditButton /> */}
-        <NumberField source="totalPrice" />
-        {/* <TextField source="operationType" /> */}
-        {/* <ReferenceField source="creationUser" reference="user">
-          <TextField source="email" />
-        </ReferenceField> */}
-        {/* <ReferenceField source="updateUser" reference="user">
-          <TextField source="email" />
-        </ReferenceField> */}
-        <DateField source="creationDate" />
-        {/* <DateField source="updateDate" /> */}
-      </Datagrid>
-    </List>
-  </div>
+  return <List 
+    {...props} 
+    title="Lista de Proveedores"
+    actions={<ListActions />}
+    // filters={<ProviderFilter />}
+  >
+    <Datagrid>
+      <EditButton />
+      <TextField source="name" />
+      {/* <TextField source="operationType" />
+      <ReferenceField source="creationUser" reference="user">
+        <TextField source="email" />
+      </ReferenceField>
+      <ReferenceField source="updateUser" reference="user">
+        <TextField source="email" />
+      </ReferenceField>
+      <DateField source="creationDate" />
+      <DateField source="updateDate" /> */}
+    </Datagrid>
+  </List>
 
 };
 
-export const SaleEdit = props => (
+export const ProviderEdit = props => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput disabled source="id" />
-      <NumberInput source="totalPrice" />
+      <TextInput source="name" />
     </SimpleForm>
   </Edit>
 );
 
-const Aside = (props) => (
-  <div style={{ width: 300, margin: '1em' }}>
-    <List {...props} title=" " >
-      <Datagrid>
-        <NumberField source="totalPrice" />
-      </Datagrid>
-    </List>
-  </div>
+export const ProviderCreate = props => (
+  <Create {...props}>
+    <SimpleForm>
+      <TextInput source="name" />
+    </SimpleForm>
+  </Create>
 );
-
-export const SaleCreate = props => {
-  const notify = useNotify();
-  const refresh = useRefresh();
-  const redirect = useRedirect();
-
-  const onSuccess = ({ data }) => {
-    notify(`Se guardo la nueva venta`)
-    refresh();
-  };
-
-  return <div>
-    <Create 
-      onSuccess={onSuccess}
-      aside={<Aside {...props}/>} 
-      {...props}
-    >
-      <SimpleForm>
-        <NumberInput source="totalPrice" />
-      </SimpleForm>
-    </Create>
-  </div>
-};

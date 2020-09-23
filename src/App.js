@@ -11,9 +11,11 @@ import MyLoginPage from './Entities/LoginPage'
 import { createMuiTheme } from '@material-ui/core/styles';
 
 import { BankList, BankCreate, BankEdit } from './Entities/Bank'
-import { SaleList, SaleCreate, SaleEdit } from './Entities/Sale'
 import { UserList, UserCreate, UserEdit } from './Entities/User'
 import { SessionList, SessionCreate, SessionEdit } from './Entities/Session'
+import { SaleList, SaleCreate, SaleEdit } from './Entities/Sale'
+import { ProviderList, ProviderCreate, ProviderEdit } from './Entities/Provider'
+import { PaymentList, PaymentCreate, PaymentEdit } from './Entities/Payment'
 
 const httpClient = (url, options = {}) => {
   // if (!options.headers) {
@@ -45,6 +47,8 @@ const App = () => {
     // theme={ theme }
   >
     {/* <Resource name="bank" list={ BankList } edit={ BankEdit } create={ BankCreate } /> */}
+    <Resource name="payment" list={ PaymentList } edit={ PaymentEdit } create={ PaymentCreate } />
+    <Resource name="provider" list={ ProviderList } edit={ ProviderEdit } create={ ProviderCreate } />
     <Resource name="sale" list={ SaleList } create={ SaleCreate } />
     {/* <Resource name="user" list={ UserList } edit={ UserEdit } create={ UserCreate } /> */}
     {/* <Resource name="session" list={ SessionList } /> */}
