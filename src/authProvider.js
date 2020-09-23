@@ -2,7 +2,7 @@ import { fetchUtils } from 'react-admin';
 import { stringify } from 'query-string';
 const httpClient = fetchUtils.fetchJson;
 
-const apiUrl = 'http://localhost:303'
+const apiUrl = 'https://murmuring-dawn-90366.herokuapp.com'
 const empresa = 'verdu'
 
 export default {
