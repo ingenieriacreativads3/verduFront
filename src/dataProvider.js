@@ -179,15 +179,21 @@ export default {
         }).then(({ json }) => ({ data: json })),
 
     deleteMany: (resource, params) => {
+        const query = {
+            filter: JSON.stringify({ id: params.ids}),
+        };
 
         params.ids.map(id => {
+
           httpClient(`${apiUrl}/${resource}/${id}`, {
             method: 'DELETE',
           }) 
+
         })
 
-        return {
-          data: {}
-        }
+        return httpClient(`${apiUrl}/${resource}/${params.ids[0]}`, {
+          method: 'DELETE',
+        }).then(({ json }) => ({ data: json }));
+
     },
 };
