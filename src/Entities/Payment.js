@@ -121,18 +121,18 @@ export const PaymentList = (props, schema) => {
     <Datagrid>
       <EditButton />
       <NumberField source="totalPrice" />
+      <DateField source="creationDate" />
       <ReferenceField source="provider" reference="provider">
         <TextField source="name" />
       </ReferenceField>
-      {/* <TextField source="operationType" />
-      <ReferenceField source="creationUser" reference="user">
+      {/* <TextField source="operationType" /> */}
+      {/* <ReferenceField source="creationUser" reference="user">
         <TextField source="email" />
-      </ReferenceField>
-      <ReferenceField source="updateUser" reference="user">
+      </ReferenceField> */}
+      {/* <ReferenceField source="updateUser" reference="user">
         <TextField source="email" />
-      </ReferenceField>
-      <DateField source="creationDate" />
-      <DateField source="updateDate" /> */}
+      </ReferenceField> */}
+      {/* <DateField source="updateDate" /> */}
     </Datagrid>
   </List>
 
