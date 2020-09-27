@@ -6,7 +6,7 @@ export default () => (
   <div>
 
     <Card>
-      {/* <CardHeader title="Welcome to the administration" /> */}
+      <CardHeader title="Verduleria Génesis" />
       {/* <CardContent>Lorem ipsum sic dolor amet...</CardContent> */}
       <img src="/img/logo.jpeg" width="500"/>
     </Card>

@@ -15,8 +15,8 @@ const httpClient = (url, options = {}) => {
   return fetchUtils.fetchJson(url, options);
 }
 
-// const apiUrl = 'http://localhost:303'
-const apiUrl = 'https://murmuring-dawn-90366.herokuapp.com'
+const apiUrl = 'http://localhost:303'
+// const apiUrl = 'https://murmuring-dawn-90366.herokuapp.com'
 // const apiUrl = 'https://jsonplaceholder.typicode.com';
 
 export default {

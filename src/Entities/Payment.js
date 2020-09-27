@@ -33,20 +33,6 @@ import {
 } from 'react-admin';
 import IconEvent from '@material-ui/icons/Event';
 
-const httpClient = (url, options = {}) => {
-  // if (!options.headers) {
-  //     options.headers = new Headers({ Accept: 'application/json' });
-  // }
-  // add your own headers here
-
-  options.headers = new Headers()
-
-  options.headers.set('Content-Type', 'application/json');
-  options.headers.set('Authorization', localStorage.getItem('session_token'));
-  options.headers.set('session', localStorage.getItem('session_id'));
-  return fetchUtils.fetchJson(url, options);
-}
-
 const ListActions = (props) => {
   const {
     className,
@@ -78,45 +64,16 @@ const ListActions = (props) => {
         })
       }
       <CreateButton basePath={basePath} />
-      <ExportButton
-        disabled={total === 0}
-        resource={resource}
-        sort={currentSort}
-        filterValues={filterValues}
-        maxResults={maxResults}
-      />
-      {/* Add your custom actions */}
-      {/* <Button
-        onClick={() => { alert('Your custom action'); }}
-        label="Show calendar"
-      >
-        <IconEvent />
-      </Button> */}
     </TopToolbar>
   );
 };
 
-const PaymentFilter = (props) => (
-  <Filter {...props}>
-    {/* <TextInput label="Search" source="q" alwaysOn /> */}
-    <ReferenceInput label="Payment" source="name" reference="payment" allowEmpty>
-      <SelectInput optionText="name" />
-    </ReferenceInput>
-  </Filter>
-);
-
 export const PaymentList = (props, schema) => {
-
-  const resource ='/payment'
-  const apiUrl = 'http://localhost:303';
-  const url = apiUrl + resource + '/schema'
-
 
   return <List 
     {...props} 
     title="Lista de Bancos"
     actions={<ListActions />}
-    // filters={<PaymentFilter />}
   >
     <Datagrid>
       <EditButton />
@@ -125,14 +82,6 @@ export const PaymentList = (props, schema) => {
       <ReferenceField source="provider" reference="provider">
         <TextField source="name" />
       </ReferenceField>
-      {/* <TextField source="operationType" /> */}
-      {/* <ReferenceField source="creationUser" reference="user">
-        <TextField source="email" />
-      </ReferenceField> */}
-      {/* <ReferenceField source="updateUser" reference="user">
-        <TextField source="email" />
-      </ReferenceField> */}
-      {/* <DateField source="updateDate" /> */}
     </Datagrid>
   </List>
 

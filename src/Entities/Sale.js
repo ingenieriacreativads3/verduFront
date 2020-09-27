@@ -34,20 +34,6 @@ import {
 import IconEvent from '@material-ui/icons/Event';
 import { Typography } from '@material-ui/core';
 
-const httpClient = (url, options = {}) => {
-  // if (!options.headers) {
-  //     options.headers = new Headers({ Accept: 'application/json' });
-  // }
-  // add your own headers here
-
-  options.headers = new Headers()
-
-  options.headers.set('Content-Type', 'application/json');
-  options.headers.set('Authorization', localStorage.getItem('session_token'));
-  options.headers.set('session', localStorage.getItem('session_id'));
-  return fetchUtils.fetchJson(url, options);
-}
-
 const ListActions = (props) => {
   const {
     className,
@@ -78,21 +64,7 @@ const ListActions = (props) => {
           context: 'button',
         })
       }
-      <CreateButton basePath={basePath} />
-      <ExportButton
-        disabled={total === 0}
-        resource={resource}
-        sort={currentSort}
-        filterValues={filterValues}
-        maxResults={maxResults}
-      />
-      {/* Add your custom actions */}
-      {/* <Button
-        onClick={() => { alert('Your custom action'); }}
-        label="Show calendar"
-      >
-        <IconEvent />
-      </Button> */}
+      <CreateButton label="Nueva Venta" basePath={basePath} />
     </TopToolbar>
   );
 };
@@ -108,30 +80,18 @@ const SaleFilter = (props) => (
 
 export const SaleList = (props) => {
 
-  const resource ='/sale'
-  const apiUrl = 'http://localhost:303';
-  const url = apiUrl + resource + '/schema'
-
-
   return <div>
       <List 
       {...props}
       title=""
       actions={<ListActions />}
-      // filters={<SaleFilter />}
     >
       <Datagrid>
-        {/* <EditButton /> */}
-        <NumberField source="totalPrice" />
-        {/* <TextField source="operationType" /> */}
-        {/* <ReferenceField source="creationUser" reference="user">
-          <TextField source="email" />
-        </ReferenceField> */}
-        {/* <ReferenceField source="updateUser" reference="user">
-          <TextField source="email" />
-        </ReferenceField> */}
-        <DateField source="creationDate" />
-        {/* <DateField source="updateDate" /> */}
+        <NumberField label="Importe" source="totalPrice" />
+        <DateField label="Fecha" source="creationDate" showTime locales="es-AR" />
+        <ReferenceField label="Método de Pago" source="paymentMethod" reference="paymentMethod">
+          <TextField  source="name" />
+        </ReferenceField>
       </Datagrid>
     </List>
   </div>
@@ -149,7 +109,7 @@ export const SaleEdit = props => (
 
 const Aside = (props) => (
   <div style={{ width: 300, margin: '1em' }}>
-    <List {...props} title=" " >
+    <List {...props} title=" " actions={<ListActions />}>
       <Datagrid>
         <NumberField source="totalPrice" />
       </Datagrid>
@@ -167,14 +127,19 @@ export const SaleCreate = props => {
     refresh();
   };
 
+  const postDefaultValue = { paymentMethod: '5f6fe5f8c483117ad4f16357' };
+
   return <div>
     <Create 
       onSuccess={onSuccess}
       aside={<Aside {...props}/>} 
       {...props}
     >
-      <SimpleForm>
-        <NumberInput source="totalPrice" />
+      <SimpleForm initialValues={postDefaultValue}>
+        <NumberInput label="Importe" autofocus source='totalPrice' />
+        <ReferenceInput label="Método de Pago" source="paymentMethod" reference="paymentMethod">
+          <SelectInput optionText="name" />
+        </ReferenceInput>
       </SimpleForm>
     </Create>
   </div>

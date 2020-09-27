@@ -24,7 +24,12 @@ import {
   ReferenceField,
   EditButton,
   TabbedShowLayout,
-  Tab
+  Tab,
+  NumberField,
+  NumberInput,
+  useNotify,
+  useRefresh,
+  useRedirect,
 } from 'react-admin';
 import IconEvent from '@material-ui/icons/Event';
 
@@ -58,39 +63,40 @@ const ListActions = (props) => {
           context: 'button',
         })
       }
-      <CreateButton basePath={basePath} />
+
     </TopToolbar>
   );
 };
 
-export const ProviderList = (props, schema) => {
+export const PaymentMethodList = (props, schema) => {
 
   return <List 
     {...props} 
-    title="Lista de Proveedores"
+    title="Lista de Bancos"
     actions={<ListActions />}
+    // filters={<PaymentMethodFilter />}
   >
     <Datagrid>
       <EditButton />
-      <TextField source="name" />
+      <TextField label="Nombre" source="name" />
     </Datagrid>
   </List>
 
 };
 
-export const ProviderEdit = props => (
+export const PaymentMethodEdit = props => (
   <Edit {...props}>
     <SimpleForm>
-      <TextInput disabled source="id" />
-      <TextInput source="name" />
+      <TextInput label="Identificador" disabled source="id" />
+      <TextInput label="Nombre" source="name" />
     </SimpleForm>
   </Edit>
 );
 
-export const ProviderCreate = props => (
+export const PaymentMethodCreate = props => (
   <Create {...props}>
     <SimpleForm>
-      <TextInput source="name" />
+      <TextInput label="Nombre" source="name" />
     </SimpleForm>
   </Create>
 );
