@@ -49,9 +49,9 @@ const App = () => {
   >
     {/* <Resource name="bank" list={ BankList } edit={ BankEdit } create={ BankCreate } /> */}
     <Resource options={{ label: 'Ventas' }} name="sale" list={ SaleList } create={ SaleCreate } />
-    <Resource options={{ label: 'Pagos' }} name="payment" list={ PaymentList } edit={ PaymentEdit } create={ PaymentCreate } />
     <Resource options={{ label: 'Proveedores' }} name="provider" list={ ProviderList } edit={ ProviderEdit } create={ ProviderCreate } />
     <Resource options={{ label: 'Métodos de Pago' }} name="paymentMethod" list={ PaymentMethodList } />
+    <Resource options={{ label: 'Pagos' }} name="payment" list={ PaymentList } create={ PaymentCreate } />
     {/* <Resource name="user" list={ UserList } edit={ UserEdit } create={ UserCreate } /> */}
     {/* <Resource name="session" list={ SessionList } /> */}
   </Admin>

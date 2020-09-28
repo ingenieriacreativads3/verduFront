@@ -72,16 +72,17 @@ export const PaymentList = (props, schema) => {
 
   return <List 
     {...props} 
-    title="Lista de Bancos"
+    title="Lista de Pagos"
     actions={<ListActions />}
   >
     <Datagrid>
       <EditButton />
-      <NumberField source="totalPrice" />
-      <DateField source="creationDate" />
-      <ReferenceField source="provider" reference="provider">
+      <NumberField label="Importe" source="totalPrice" />
+      <DateField label="Fecha" source="creationDate" />
+      <ReferenceField label="Proveedor" source="provider" reference="provider">
         <TextField source="name" />
       </ReferenceField>
+      <TextField multiline label="Observación" source="observation" />
     </Datagrid>
   </List>
 
@@ -91,10 +92,11 @@ export const PaymentEdit = props => (
   <Edit {...props}>
     <SimpleForm>
       <TextInput disabled source="id" />
-      <NumberInput source="totalPrice" />
-      <ReferenceInput source="provider" reference="provider">
+      <NumberInput label="Importe" source="totalPrice" />
+      <ReferenceInput label="Proveedor" source="provider" reference="provider">
         <SelectInput optionText="name" />
       </ReferenceInput>
+      <TextInput multiline label="Observación" source="observation" />
     </SimpleForm>
   </Edit>
 );
@@ -102,10 +104,11 @@ export const PaymentEdit = props => (
 export const PaymentCreate = props => (
   <Create {...props}>
     <SimpleForm>
-      <NumberInput source="totalPrice" />
-      <ReferenceInput source="provider" reference="provider">
+      <NumberInput label="Importe" source="totalPrice" />
+      <ReferenceInput label="Proveedor" source="provider" reference="provider">
         <SelectInput optionText="name" />
       </ReferenceInput>
+      <TextInput multiline label="Observación" source="observation" />
     </SimpleForm>
   </Create>
 );

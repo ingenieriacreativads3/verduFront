@@ -15,8 +15,8 @@ const httpClient = (url, options = {}) => {
   return fetchUtils.fetchJson(url, options);
 }
 
-// const apiUrl = 'http://localhost:303'
-const apiUrl = 'https://murmuring-dawn-90366.herokuapp.com'
+const apiUrl = 'http://localhost:303'
+// const apiUrl = 'https://murmuring-dawn-90366.herokuapp.com'
 // const apiUrl = 'https://jsonplaceholder.typicode.com';
 
 export default {
@@ -71,15 +71,15 @@ export default {
     })
   },
 
-    getOne: (resource, params) => {
+  getOne: (resource, params) => {
 
-      console.log(resource)
-      console.log(params)
+    console.log(resource)
+    console.log(params)
 
-      return httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => ({
-        data: json,
-      }))
-    },
+    return httpClient(`${apiUrl}/${resource}/${params.id}`).then(({ json }) => ({
+      data: json,
+    }))
+  },
 
     getMany: (resource, params) => {
 
